@@ -12,7 +12,7 @@ public class FileUtils {
     public static void copy(InputStream is, OutputStream os){
         try(is;os) {
             byte[] flush = new byte[1024];
-            int length = -1;
+            int length;
             while ((length=is.read(flush)) != -1){
                 os.write(flush,0,length);
             }
