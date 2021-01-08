@@ -139,13 +139,20 @@ public class HashMapTest<K, V> {
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("{");
-
-        for (int i=0; i<table.length; i++){
-            s.append(" ");
-
+        StringBuffer s = new StringBuffer("");
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] == null){
+                s.append("第" + i + "行：" + table[i] + "\n");
+            }else {
+                s.append("第" + i + "行：[");
+                while (table[i] != null){
+                    s.append(table[i].key + "-" + table[i].value + ",");
+                    table[i] = table[i].next;
+                }
+                s.setCharAt(s.length()-1,']');
+                s.append("\n");
+            }
         }
-        s.setCharAt(table.length-1,'}');
         return s.toString();
     }
 }
