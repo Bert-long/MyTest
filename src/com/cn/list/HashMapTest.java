@@ -149,6 +149,20 @@ public class HashMapTest<K, V> {
             }
         }
         s.setCharAt(s.length()-1,'}');
+        StringBuffer s = new StringBuffer("");
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] == null){
+                s.append("第" + i + "行：" + table[i] + "\n");
+            }else {
+                s.append("第" + i + "行：[");
+                while (table[i] != null){
+                    s.append(table[i].key + "-" + table[i].value + ",");
+                    table[i] = table[i].next;
+                }
+                s.setCharAt(s.length()-1,']');
+                s.append("\n");
+            }
+        }
         return s.toString();
     }
 }
@@ -158,5 +172,5 @@ class NodeTest1<K, V>{
     K key;
     V value;
     NodeTest1 next;
-
 }
+
