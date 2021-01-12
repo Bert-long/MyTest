@@ -16,27 +16,27 @@ public class HashMapTest<K, V> {
     }
     public static void main(String[] ages){
         //hashMap线程不安全，效率高,允许key,value为空。hashTable线程安全，效率低，不允许key,value为空
-//        Map<Integer, String> b = new Hashtable<>();
-//        HashMapTest<Integer, String> h = new HashMapTest<>();
-//        h.put(10,"a");
-//        h.put(20,"b");
-//        h.put(30,"c");
-//        h.put(30,"AAA");
-//        h.put(53,"TTT");
-//        h.put(69,"TGG");
-//        h.put(85,"KGG");
-//        System.out.println(h);
-//        System.out.println(h.get(53));
-//
-//
-//        //主要用于排序，按K值递增
-//        Map<Integer, String> a = new TreeMap<>();
-//        a.put(10, "a");
-//        a.put(20, "b");
-//        a.put(30, "c");
-//        for (Integer key:a.keySet()){
-//            System.out.println(key   +"--"+ a.get(key));
-//        }
+        Map<Integer, String> b = new Hashtable<>();
+        HashMapTest<Integer, String> h = new HashMapTest<>();
+        h.put(10,"a");
+        h.put(20,"b");
+        h.put(30,"c");
+        h.put(30,"AAA");
+        h.put(53,"TTT");
+        h.put(69,"TGG");
+        h.put(85,"KGG");
+        System.out.println(h);
+        System.out.println(h.get(53));
+
+
+       /* //主要用于排序，按K值递增
+        Map<Integer, String> a = new TreeMap<>();
+        a.put(10, "a");
+        a.put(20, "b");
+        a.put(30, "c");
+        for (Integer key:a.keySet()){
+            System.out.println(key   +"--"+ a.get(key));
+        }
 
         Map<Emp, String> c = new TreeMap<>();
         c.put(new Emp(1, "A", 1000), "AAAAAAAAAA");
@@ -44,7 +44,7 @@ public class HashMapTest<K, V> {
         c.put(new Emp(3, "C", 3000), "CAAAAAAAAA");
         for (Emp key:c.keySet()){
             System.out.println(key +"---"+ c.get(key));
-        }
+        }*/
 
     }
 
@@ -132,8 +132,8 @@ public class HashMapTest<K, V> {
     }
 
     public int myHash(int v, int length){
-        System.out.println(v +"的HashCode值转换为Hash值：" + (v & (length - 1)));   //位运算，效率高
-        System.out.println(v +"的HashCode值转换为Hash值：" + (v % (length - 1)));   //取模运算，效率低
+//        System.out.println(v +"的HashCode值转换为Hash值：" + (v & (length - 1)));   //位运算，效率高
+//        System.out.println(v +"的HashCode值转换为Hash值：" + (v % (length - 1)));   //取模运算，效率低
         return v & (length - 1);
     }
 
@@ -142,10 +142,13 @@ public class HashMapTest<K, V> {
         StringBuilder s = new StringBuilder("{");
 
         for (int i=0; i<table.length; i++){
-            s.append(" ");
-
+            NodeTest1 temp = table[i];
+            while (temp != null){
+                s.append(temp.key + "--" + temp.value + ",");
+                temp = temp.next;
+            }
         }
-        s.setCharAt(table.length-1,'}');
+        s.setCharAt(s.length()-1,'}');
         return s.toString();
     }
 }
@@ -155,6 +158,5 @@ class NodeTest1<K, V>{
     K key;
     V value;
     NodeTest1 next;
-
 
 }
