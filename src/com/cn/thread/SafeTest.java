@@ -37,7 +37,6 @@ class Account {
         this.name = name;
     }
 }
-
 //模拟取款
 class Drawing extends Thread {
     Account account;
