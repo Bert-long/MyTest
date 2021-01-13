@@ -3,6 +3,7 @@ package com.cn.thread;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SafeTest {
     public static void main(String[] args) throws InterruptedException {
@@ -11,8 +12,24 @@ public class SafeTest {
         Drawing wife = new Drawing(account, 90, "happy的她");
         you.start();
         wife.start();
+        testList1();
+        testList();
 
-        //测试容器
+    }
+
+    //使用线程安全的List容器，内部已经实现
+    public static void testList1() throws InterruptedException {
+        List<String> list = new CopyOnWriteArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            new Thread(() -> {
+                list.add(Thread.currentThread().getName());
+            }).start();
+        }
+        Thread.sleep(5000);
+        System.out.println(list.size());
+    }
+    //测试容器
+    public static void testList() throws InterruptedException {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
             new Thread(() -> {
@@ -37,6 +54,7 @@ class Account {
         this.name = name;
     }
 }
+
 //模拟取款
 class Drawing extends Thread {
     Account account;
