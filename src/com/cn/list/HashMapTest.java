@@ -139,16 +139,6 @@ public class HashMapTest<K, V> {
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("{");
-
-        for (int i=0; i<table.length; i++){
-            NodeTest1 temp = table[i];
-            while (temp != null){
-                s.append(temp.key + "--" + temp.value + ",");
-                temp = temp.next;
-            }
-        }
-        s.setCharAt(s.length()-1,'}');
         StringBuffer s = new StringBuffer("");
         for (int i = 0; i < table.length; i++) {
             if (table[i] == null){
