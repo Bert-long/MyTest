@@ -14,7 +14,7 @@ public class Time {
     public static void main(String[] args) {
 
         String path1="D:\\BaiduNetdiskDownload\\01. JAVA初级阶段【北京尚学堂·百战程序员】\\01. java300集【北京尚学堂·百战程序员】\\";//放入需要统计文件夹绝对路径
-        String path = path1.concat("10_网络编程");
+        String path = path1.concat("16_手写SORM框架(学有余力同学观看)");
         getFile(path);
         System.out.println("文件夹中视屏总时长为"+Int2String(totalTime)+"min");
     }
