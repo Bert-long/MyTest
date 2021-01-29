@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="carsell:war exploded">
+    <output-path>$PROJECT_DIR$/classes/artifacts/carsell_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="carsell" />
+          <element id="library" level="module" name="lib" module-name="carsell" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="carsell/web/Web" />
+    </root>
+  </artifact>
+</component>
