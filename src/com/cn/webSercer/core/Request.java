@@ -1,4 +1,4 @@
-package com.cn.webSercer;
+package com.cn.webSercer.core;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +48,7 @@ public class Request {
         //2)、获取 HTTP/的位置
         int endIdx = this.requestInfo.indexOf("HTTP/");
         //3)、分割字符串
-        this.url = this.requestInfo.substring(startIdx, endIdx);
+        this.url = this.requestInfo.substring(startIdx, endIdx).trim();
         //4)、获取？的位置
         int queryIdx =this.url.indexOf("?");
         if(queryIdx>=0) {//表示存在请求参数

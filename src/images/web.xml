@@ -2,11 +2,11 @@
  <web-app>
  <servlet>
   <servlet-name>login</servlet-name>
-  <servlet-class>com.cn.xml.webXml.LoginServlet</servlet-class>
+  <servlet-class>com.cn.xml.webXml.LoginServlet1</servlet-class>
  </servlet>
    <servlet>
   <servlet-name>reg</servlet-name>
-  <servlet-class>com.cn.xml.webXml.RegisterServlet</servlet-class>
+  <servlet-class>com.cn.xml.webXml.RegisterServlet1</servlet-class>
  </servlet>   
  <servlet-mapping>
   <servlet-name>login</servlet-name>

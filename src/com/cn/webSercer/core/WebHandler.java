@@ -1,47 +1,20 @@
-package com.cn.xml.webXml;
+package com.cn.webSercer.core;
 
+import com.cn.xml.webXml.Entity;
+import com.cn.xml.webXml.Mapping;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
- * 熟悉SAX解析流程
+ * 处理器
  * 
  * @author 裴新 QQ:3401997271
  *
  */
-public class WebXml {
-
-	public static void main(String[] args) throws Exception{
-		//SAX解析
-		//1、获取解析工厂
-		SAXParserFactory factory=SAXParserFactory.newInstance();
-		//2、从解析工厂获取解析器
-		SAXParser parse =factory.newSAXParser();
-		//3、编写处理器
-		//4、加载文档 Document 注册处理器
-		WebHandler handler=new WebHandler();
-		//5、解析
-		parse.parse("src/images/web.xml",handler);
-		
-		//获取数据
-		WebContext1 context = new WebContext1(handler.getEntitys(),handler.getMappings());
-		//假设你输入了 /login
-		String className = context.getClz("/reg");
-		Class clz =Class.forName(className);
-		Servlet1 servlet =(Servlet1)clz.getConstructor().newInstance();
-		System.out.println(servlet);
-		servlet.service();
-		
-	}
-
-}
-class  WebHandler extends DefaultHandler{
+public class WebHandler extends DefaultHandler{
 	private List<Entity> entitys  = new ArrayList<Entity>();
 	private List<Mapping> mappings = new ArrayList<Mapping>();
 	private Entity entity ;

@@ -13,7 +13,7 @@ public class Time {
     private static long totalTime;
     public static void main(String[] args) {
 
-        String path1="D:\\BaiduNetdiskDownload\\01. JAVA初级阶段【北京尚学堂·百战程序员】\\01. java300集【北京尚学堂·百战程序员】\\";//放入需要统计文件夹绝对路径
+        String path1="D:\\BaiduNetdiskDownload\\04. Servlet和JSP(JAVAEE基础)【北京尚学堂·百战程序员】\\04. Servlet和JSP(JAVAEE基础)【北京尚学堂·百战程序员】";//放入需要统计文件夹绝对路径
         String path2 = path1.concat("11_手写服务器httpserver项目(java基础集大成者)");
         String path3 = path1.concat("12_注解_反射_字节码_类加载机制"); //400
         String path4 = path1.concat("13_GOF23设计模式全解");          //600
@@ -22,7 +22,7 @@ public class Time {
         String path7 = path1.concat("16_手写SORM框架(学有余力同学观看)"); //360
         String path8 = path1.concat("17_预科阶段(针对零基础和行业介绍，可跳过)"); //224
 
-        getFile(path8);
+        getFile(path1);
         System.out.println("文件夹中视屏总时长为"+Int2String(totalTime)+"min");
     }
     public static void getFile(String path) {
@@ -40,7 +40,7 @@ public class Time {
 
                 String fileName=file.getName().trim();
                 String type=fileName.substring(fileName.lastIndexOf("."));
-                if(type.equals(".mp4")) {
+                if(type.equals(".mp4") || type.equals(".avi")) {
 
                     System.out.print(fileName+"是视屏文件，文件的大小为"+file.length()+"   ");
                     MultimediaInfo m = null;

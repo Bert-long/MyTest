@@ -1,4 +1,7 @@
-package com.cn.xml.webXml;
+package com.cn.webSercer.core;
+
+import com.cn.xml.webXml.Entity;
+import com.cn.xml.webXml.Mapping;
 
 import java.util.HashMap;
 import java.util.List;

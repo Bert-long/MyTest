@@ -1,4 +1,6 @@
-package com.cn.webSercer;
+package com.cn.webSercer.core;
+
+import com.cn.webSercer.LoginServlet;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.util.Date;
 
 public class Server {
     private ServerSocket serverSocket;
+    private boolean isRunning;
     public static void main(String[] args) {
         Server server = new Server();
         server.start();
@@ -18,13 +21,47 @@ public class Server {
     public void start(){
         try {
             serverSocket = new ServerSocket(8888);
+            isRunning = true;
             receive();
         } catch (IOException e) {
             System.out.println("服务器启动失败......");
         }
     }
-    //封装后
+    //封装:加入多线程
     public void receive(){
+        while(isRunning) {
+            try {
+                Socket client = serverSocket.accept();
+                System.out.println("一个客户端建立了连接....");
+                //多线程处理
+                new Thread(new Dispatcher(client)).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("客户端错误");
+            }
+        }
+    }
+
+    //封装:加入servlet
+    public void receive3(){
+        try {
+            Socket client = serverSocket.accept();
+            System.out.println("一个客服端连接");
+            //封装
+            Request request = new Request(client);
+            Response response =new Response(client);
+            //关注了内容
+            Servlet servlet = new LoginServlet();
+            servlet.service(request,response);
+            //关注了状态码
+            response.pushToBrowser(200);
+
+        } catch (IOException e) {
+            System.out.println("客户端错误");
+        }
+    }
+    //封装后
+    public void receive1(){
         try {
             Socket client = serverSocket.accept();
             System.out.println("一个客服端连接");
@@ -51,7 +88,8 @@ public class Server {
         }
     }
 
-    public void receive1(){
+    @SuppressWarnings("all")
+    public void receive2(){
         try {
             Socket client = serverSocket.accept();
             System.out.println("一个客服端连接");
@@ -92,6 +130,7 @@ public class Server {
 			Content-type:text/html
 			Content-length:39725426
 			 */
+
             responseInfo.append("Date:").append(new Date()).append(CRLF);
             responseInfo.append("Server:").append("shsxt Server/0.0.1;charset=GBK").append(CRLF);
             responseInfo.append("Content-type:text/html").append(CRLF);
@@ -108,7 +147,14 @@ public class Server {
         }
     }
 
-    public void stop(){
-
+    //停止服务
+    public void stop() {
+        isRunning = false;
+        try {
+            this.serverSocket.close();
+            System.out.println("服务器已停止");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

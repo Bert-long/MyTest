@@ -1,4 +1,4 @@
-package com.cn.webSercer;
+package com.cn.webSercer.core;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
